@@ -1,20 +1,8 @@
-import { auth } from "~/server/auth";
+import NextAuth from "next-auth";
 
-export default auth((req) => {
-  const { pathname } = req.nextUrl;
-  const isLoggedIn = !!req.auth;
+import { authConfig } from "~/auth.config";
 
-  // 공개 경로
-  const publicPaths = ["/auth/login", "/auth/signup", "/auth/error"];
-  if (publicPaths.some((p) => pathname.startsWith(p))) return;
-
-  // 보호 경로 — 미로그인 시 로그인으로
-  if (!isLoggedIn) {
-    const loginUrl = new URL("/auth/login", req.nextUrl.origin);
-    loginUrl.searchParams.set("callbackUrl", pathname);
-    return Response.redirect(loginUrl);
-  }
-});
+export default NextAuth(authConfig).auth;
 
 export const config = {
   matcher: [
