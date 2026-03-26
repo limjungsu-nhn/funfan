@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 
 import { SimulatedFeedProvider, type FeedEvent } from "~/lib/feed";
 
@@ -16,7 +16,7 @@ const EMOTION_EMOJI = {
   LOVING: "❤️",
 };
 
-export default function WorkroomPage() {
+function WorkroomContent() {
   const searchParams = useSearchParams();
   const workId = searchParams.get("workId");
 
@@ -391,5 +391,13 @@ export default function WorkroomPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function WorkroomPage() {
+  return (
+    <Suspense fallback={<div className="flex h-[calc(100vh-5rem)] items-center justify-center text-sm text-[var(--color-ink-300)]">로딩 중...</div>}>
+      <WorkroomContent />
+    </Suspense>
   );
 }

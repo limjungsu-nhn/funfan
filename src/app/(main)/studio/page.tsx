@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 
 import { api } from "~/trpc/react";
 
@@ -13,7 +13,7 @@ const MODE_LABELS = {
   support: { label: "정신 지원", emoji: "💙" },
 };
 
-export default function StudioPage() {
+function StudioContent() {
   const searchParams = useSearchParams();
   const workId = searchParams.get("workId") ?? undefined;
 
@@ -254,5 +254,13 @@ export default function StudioPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function StudioPage() {
+  return (
+    <Suspense fallback={<div className="flex h-[calc(100vh-4rem)] items-center justify-center text-sm text-[var(--color-ink-300)]">로딩 중...</div>}>
+      <StudioContent />
+    </Suspense>
   );
 }
