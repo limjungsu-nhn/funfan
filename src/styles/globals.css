@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── 폰트 ── */
+  --font-sans: var(--font-geist-sans), "Noto Sans JP", "Noto Sans KR",
+    ui-sans-serif, system-ui, sans-serif;
+
+  /* ── FunFan 브랜드 컬러 ── */
+  --color-brand-50: #fef9f0;
+  --color-brand-100: #fdefd6;
+  --color-brand-200: #f9d9a8;
+  --color-brand-300: #f4bc6e;
+  --color-brand-400: #ee9b35;
+  --color-brand-500: #e87d13;   /* 메인 오렌지 */
+  --color-brand-600: #d96208;
+  --color-brand-700: #b44a0a;
+  --color-brand-800: #903b10;
+  --color-brand-900: #763210;
+
+  /* ── 중성 ── */
+  --color-ink-900: #1a1611;
+  --color-ink-700: #3d3527;
+  --color-ink-500: #7a6e5a;
+  --color-ink-300: #b8ae9e;
+  --color-ink-100: #f0ece6;
+  --color-surface: #faf8f5;
+
+  /* ── 감정 태그 ── */
+  --color-tag-funny: #ffb300;
+  --color-tag-moving: #5c9ef0;
+  --color-tag-exciting: #9c27b0;
+  --color-tag-loving: #e91e63;
+
+  /* ── 페르소나 테마 ── */
+  --color-tonton: #4a7c59;   /* 판다 — 그린 */
+  --color-hana: #c68cb5;     /* 양 — 라벤더 핑크 */
+  --color-fuku: #8b7355;     /* 부엉이 — 웜 브라운 */
+
+  /* ── 꽃 단계 ── */
+  --color-flower-seed: #a97c50;
+  --color-flower-sprout: #66bb6a;
+  --color-flower-bud: #aed581;
+  --color-flower-bloom: #f06292;
+  --color-flower-wreath: #ffca28;
+
+  /* ── 간격 ── */
+  --spacing-page: 1280px;     /* 최대 폭 */
+}
+
+/* ── 기본 리셋 ── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+}
+
+/* ── 스크롤바 (웹킷) ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-300);
+  border-radius: 3px;
+}
+
+/* ── 포커스 링 ── */
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}

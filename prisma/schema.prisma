@@ -1,0 +1,183 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+    output   = "../generated/prisma"
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
+}
+
+// ─── Auth ────────────────────────────────────────────────────────────────────
+
+model Account {
+    id                       String  @id @default(cuid())
+    userId                   String
+    type                     String
+    provider                 String
+    providerAccountId        String
+    refresh_token            String?
+    access_token             String?
+    expires_at               Int?
+    token_type               String?
+    scope                    String?
+    id_token                 String?
+    session_state            String?
+    refresh_token_expires_in Int?
+    user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+}
+
+model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+    identifier String
+    token      String   @unique
+    expires    DateTime
+
+    @@unique([identifier, token])
+}
+
+// ─── Invite Code ─────────────────────────────────────────────────────────────
+
+model InviteCode {
+    id        String    @id @default(cuid())
+    code      String    @unique
+    usedAt    DateTime?
+    usedBy    User?     @relation(fields: [usedById], references: [id])
+    usedById  String?   @unique
+    createdAt DateTime  @default(now())
+}
+
+// ─── User ────────────────────────────────────────────────────────────────────
+
+enum Persona {
+    TONTON // 판다 — 베테랑 만화가
+    HANA   // 양 — 장르 전문가
+    FUKU   // 부엉이 — 독자 대표
+}
+
+enum Genre {
+    FANTASY
+    ROMANCE
+    ACTION
+    DRAMA
+    COMEDY
+    HORROR
+    SLICE_OF_LIFE
+    OTHER
+}
+
+model User {
+    id             String   @id @default(cuid())
+    email          String   @unique
+    passwordHash   String
+    nickname       String?
+    genre          Genre?
+    creativeStyle  String?
+    persona        Persona  @default(HANA)
+    onboardingDone Boolean  @default(false)
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+
+    accounts   Account[]
+    sessions   Session[]
+    inviteCode InviteCode?
+    works      Work[]
+    aiContexts AiContext[]
+    waterings  WateringEvent[] @relation("WateredBy")
+}
+
+// ─── Work & Episode ──────────────────────────────────────────────────────────
+
+enum FlowerStage {
+    SEED   // 씨앗
+    SPROUT // 싹
+    BUD    // 꽃봉오리
+    BLOOM  // 개화
+    WREATH // 리스 (완결)
+}
+
+model Work {
+    id          String      @id @default(cuid())
+    title       String
+    description String?
+    coverImage  String?
+    isPublished Boolean     @default(false)
+    isCompleted Boolean     @default(false)
+    flowerStage FlowerStage @default(SEED)
+    waterCount  Int         @default(0)
+    author      User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    authorId    String
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+
+    episodes  Episode[]
+    waterings WateringEvent[]
+    aiContext AiContext?
+}
+
+model Episode {
+    id          String   @id @default(cuid())
+    title       String
+    content     String?
+    images      String[]
+    episodeNum  Int
+    isPublished Boolean  @default(false)
+    work        Work     @relation(fields: [workId], references: [id], onDelete: Cascade)
+    workId      String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    waterings WateringEvent[]
+}
+
+// ─── Gamification ────────────────────────────────────────────────────────────
+
+enum EmotionTag {
+    FUNNY    // 😂
+    MOVING   // 😭
+    EXCITING // ⚡
+    LOVING   // ❤️
+}
+
+model WateringEvent {
+    id         String      @id @default(cuid())
+    emotionTag EmotionTag?
+    comment    String?
+    work       Work        @relation(fields: [workId], references: [id], onDelete: Cascade)
+    workId     String
+    episode    Episode     @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+    episodeId  String
+    reader     User        @relation("WateredBy", fields: [readerId], references: [id], onDelete: Cascade)
+    readerId   String
+    createdAt  DateTime    @default(now())
+
+    @@unique([readerId, episodeId])
+}
+
+// ─── AI Context ──────────────────────────────────────────────────────────────
+
+model AiContext {
+    id            String   @id @default(cuid())
+    characters    Json     @default("[]")
+    storySettings Json     @default("{}")
+    writingNotes  String?
+    work          Work     @relation(fields: [workId], references: [id], onDelete: Cascade)
+    workId        String   @unique
+    user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId        String
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+}
