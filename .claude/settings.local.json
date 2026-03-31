@@ -24,7 +24,9 @@
       "Bash(git commit -m \"feat: Add index.html as entry point \\(signup page\\):*)",
       "Bash(git commit:*)",
       "Bash(curl -s https://funfan-v3.vercel.app/)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Bash(ls -la /Users/NHN/_FunFan_v3/*.html)",
+      "Bash(grep -r \"border.*hover\\\\|:hover.*border\" /Users/NHN/_FunFan_v3/*.html)"
     ]
   }
 }

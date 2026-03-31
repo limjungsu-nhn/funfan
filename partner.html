@@ -80,7 +80,9 @@
         .partner-card {
             width: 320px;
             height: 440px;
-            border: 1px solid #1a68fe;
+            border: none;
+            outline: 1px solid #1a68fe;
+            outline-offset: -1px;
             border-radius: 24px;
             padding: 24px 22px;
             background-color: #ffffff;
@@ -89,11 +91,12 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0px 8px 16px 0px rgba(25, 96, 245, 0.08);
-            transition: all 0.3s ease-in-out;
         }
 
         .partner-card:hover {
-            box-shadow: 0px 12px 24px 0px rgba(25, 96, 245, 0.12);
+            outline: 2px solid #1a68fe;
+            outline-offset: -2px;
+            box-shadow: 3px 3px 0px 0px rgba(26, 104, 254, 1);
         }
 
         .partner-header {
@@ -278,6 +281,26 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const selectButtons = document.querySelectorAll('.partner-select-btn');
+            const partnerCards = document.querySelectorAll('.partner-card');
+
+            // 카드 호버 효과
+            partnerCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    // 다른 카드들의 배경색을 #F4F7FF로 변경
+                    partnerCards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.style.backgroundColor = '#F4F7FF';
+                        }
+                    });
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    // 모든 카드의 배경색을 원래대로 복구
+                    partnerCards.forEach(otherCard => {
+                        otherCard.style.backgroundColor = '#ffffff';
+                    });
+                });
+            });
 
             selectButtons.forEach(button => {
                 button.addEventListener('click', function() {
