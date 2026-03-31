@@ -26,7 +26,8 @@
       "Bash(curl -s https://funfan-v3.vercel.app/)",
       "Bash(git pull:*)",
       "Bash(ls -la /Users/NHN/_FunFan_v3/*.html)",
-      "Bash(grep -r \"border.*hover\\\\|:hover.*border\" /Users/NHN/_FunFan_v3/*.html)"
+      "Bash(grep -r \"border.*hover\\\\|:hover.*border\" /Users/NHN/_FunFan_v3/*.html)",
+      "Bash(grep -n \"logo\\\\|LOGO\\\\|funfan\" /Users/NHN/_FunFan_v3/*.html)"
     ]
   }
 }

@@ -44,6 +44,16 @@
             z-index: 1000;
         }
 
+        .logo {
+            cursor: pointer;
+        }
+
+        .logo a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
         .form-title {
             text-align: center;
             color: #1a68fe;
@@ -237,7 +247,9 @@
     </style>
 </head>
 <body>
-    <img src="logo_funfan.svg" alt="FunFan Logo" class="logo">
+    <a href="signup.html">
+        <img src="logo_funfan.svg" alt="FunFan Logo" class="logo">
+    </a>
     <div class="container">
         <form class="form-wrapper" id="loginForm">
             <h1 class="form-title hero">ログイン</h1>
