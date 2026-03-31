@@ -22,7 +22,9 @@
       "Bash(npx vercel:*)",
       "Bash(ls -lh *.html)",
       "Bash(git commit -m \"feat: Add index.html as entry point \\(signup page\\):*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(curl -s https://funfan-v3.vercel.app/)",
+      "Bash(git pull:*)"
     ]
   }
 }
