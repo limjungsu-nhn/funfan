@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "mcp__Figma__get_design_context",
+      "mcp__Figma__get_screenshot",
+      "Bash(curl -s http://localhost:8000/common-styles.css)",
+      "Bash(curl -I http://localhost:8000/common-styles.css)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"FunFan 설문지 기능 구현 완료:*)",
+      "Bash(git rebase:*)"
+    ]
+  }
+}

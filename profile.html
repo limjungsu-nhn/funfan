@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunFan - プロフィール</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common-styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Sans W3', 'Roboto', sans-serif;
+            background-color: #ffffff;
+            min-height: 100vh;
+            color: #1a68fe;
+            overflow-y: scroll;
+        }
+
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 24px;
+            width: 92px;
+            height: 26px;
+            z-index: 1000;
+        }
+
+        .main-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .container {
+            display: none;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+        }
+
+        .header h1 {
+            text-align: center;
+            color: #1a68fe;
+            margin: 0;
+        }
+
+        .header h1.hero {
+            font-size: 44px;
+            font-weight: 400;
+            font-family: 'Rampart One', sans-serif;
+            line-height: 64px;
+            letter-spacing: -0.06em;
+        }
+
+        .header p {
+            font-family: 'Hiragino Sans', 'Hiragino Sans W3', 'Roboto', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            color: #1a68fe;
+            line-height: 20px;
+        }
+
+        .form-card-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            min-height: 360px;
+        }
+
+        .form-card {
+            background-color: #ffffff;
+            border: 1px solid #1a68fe;
+            border-radius: 24px;
+            padding: 32px 28px 28px 28px;
+            width: 100%;
+            height: 380px;
+            box-shadow: 0px 8px 16px 0px rgba(25, 96, 245, 0.08);
+            display: none;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            margin-bottom: 46px;
+        }
+
+        .form-card.active {
+            display: flex;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .form-group-label {
+            font-family: 'Hiragino Sans', 'Hiragino Sans W3', 'Roboto', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            color: #1a68fe;
+            line-height: 20px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option {
+            background-color: #ffffff;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 12px 20px;
+            height: 48px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Hiragino Sans', 'Hiragino Sans W3', 'Roboto', sans-serif;
+        }
+
+        .option:hover {
+            border: 2px solid transparent;
+            background-color: #f1f6ff;
+        }
+
+        .option:hover .option-text {
+            font-weight: 600;
+        }
+
+        .option.selected {
+            background-color: #ffffff;
+            border: 2px solid #1a68fe;
+            box-shadow: 3px 3px 0px #1a68fe;
+        }
+
+        .option.selected .option-text {
+            font-weight: 600;
+        }
+
+
+        .option-number {
+            font-family: 'Hiragino Sans', 'Hiragino Sans W6', 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a68fe;
+            flex-shrink: 0;
+            min-width: 20px;
+            line-height: 26px;
+        }
+
+        .option-text {
+            font-family: 'Hiragino Sans', 'Hiragino Sans W3', 'Roboto', sans-serif;
+            font-size: 15px;
+            font-weight: 300;
+            color: #1a68fe;
+            line-height: 24px;
+        }
+
+        .button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 100%;
+        }
+
+        .button-wrapper-between {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .button-prev {
+            background-color: #ffffff;
+            color: #1a68fe;
+            border: 1px solid #1a68fe;
+            border-radius: 12px;
+            padding: 10px 16px;
+            min-height: 40px;
+            font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .button-prev:hover {
+            background-color: #f4f7ff;
+        }
+
+        .button-prev:active {
+            background-color: #e8f0ff;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Hiragino Sans', 'Hiragino Sans W3', 'Roboto', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            color: #1a68fe;
+            text-align: center;
+            padding: 0;
+            line-height: 18px;
+            background: #ffffff;
+            shrink: 0;
+            margin-bottom: 46px;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                position: relative;
+                width: 100%;
+                height: auto;
+                bottom: auto;
+                left: auto;
+                transform: none;
+            }
+
+            .content-wrapper {
+                padding: 20px;
+                padding-top: 160px;
+            }
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+                letter-spacing: -1.92px;
+            }
+
+            .form-card {
+                padding: 20px;
+                gap: 20px;
+                width: 100vw;
+            }
+
+            .form-card-wrapper {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="logo_funfan.svg" alt="FunFan Logo" class="logo">
+
+    <div class="main-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <h1 class="form-title hero">あなたについて教えてください</h1>
+                <p class="assist-text">回答はパートナー選びの参考になります</p>
+            </div>
+
+            <div class="form-card-wrapper">
+                <div class="form-card" data-question="1">
+                    <div class="form-group">
+                        <div class="form-group-label assist-text">行き詰まったとき、どうしたいですか？</div>
+                        <div class="options">
+                            <div class="option" data-value="1">
+                                <span class="option-number body-small-w6">1.</span>
+                                <span class="option-text body-small">誰かにそばにいてもらいたい</span>
+                            </div>
+                            <div class="option" data-value="2">
+                                <span class="option-number body-small-w6">2.</span>
+                                <span class="option-text body-small">自分の気持ちをゆっくり整理したい</span>
+                            </div>
+                            <div class="option" data-value="3">
+                                <span class="option-number body-small-w6">3.</span>
+                                <span class="option-text body-small">具体的な解決策が欲しい</span>
+                            </div>
+                            <div class="option" data-value="4">
+                                <span class="option-number body-small-w6">4.</span>
+                                <span class="option-text body-small">その都度変わる</span>
+                            </div>
+                        </div>
+                        <div class="button-wrapper">
+                            <button class="button-cta-sm">選択 (1/2)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-card" data-question="2">
+                    <div class="form-group">
+                        <div class="form-group-label assist-text">創作で一番大切にしていることは？</div>
+                        <div class="options">
+                            <div class="option" data-value="1">
+                                <span class="option-number body-small-w6">1.</span>
+                                <span class="option-text body-small">キャラクターへの感情移入</span>
+                            </div>
+                            <div class="option" data-value="2">
+                                <span class="option-number body-small-w6">2.</span>
+                                <span class="option-text body-small">作品を通じた自己発見</span>
+                            </div>
+                            <div class="option" data-value="3">
+                                <span class="option-number body-small-w6">3.</span>
+                                <span class="option-text body-small">物語の構成と完成度</span>
+                            </div>
+                            <div class="option" data-value="4">
+                                <span class="option-number body-small-w6">4.</span>
+                                <span class="option-text body-small">描き続けること自体</span>
+                            </div>
+                        </div>
+                        <div class="button-wrapper button-wrapper-between">
+                            <button class="button-cta-sm button-prev">戻る</button>
+                            <button class="button-cta-sm">選択 (2/2)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer caption">NHN comico Corp.</div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 2;
+        const formCards = document.querySelectorAll('.form-card');
+
+        // 초기 상태 설정
+        function initializeCards() {
+            formCards.forEach((card, index) => {
+                if (index === 0) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        }
+
+        // 옵션 선택 기능
+        function setupOptionListeners() {
+            const options = document.querySelectorAll('.option');
+
+            options.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    const currentCard = document.querySelector('.form-card.active');
+                    const currentOptions = currentCard.querySelectorAll('.option');
+
+                    // 기존 선택된 항목 제거
+                    currentOptions.forEach(opt => opt.classList.remove('selected'));
+                    // 새로운 항목 선택
+                    this.classList.add('selected');
+                });
+            });
+        }
+
+        // 버튼 클릭 기능
+        function setupButtonListeners() {
+            const nextButtons = document.querySelectorAll('.button-cta-sm:not(.button-prev)');
+            const prevButton = document.querySelector('.button-prev');
+
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const currentCard = document.querySelector('.form-card.active');
+                    const selectedOption = currentCard.querySelector('.option.selected');
+
+                    // 옵션이 선택되었는지 확인
+                    if (!selectedOption) {
+                        alert('옵션을 선택해주세요');
+                        return;
+                    }
+
+                    moveToNextQuestion(currentCard);
+                });
+            });
+
+            if (prevButton) {
+                prevButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const currentCard = document.querySelector('.form-card.active');
+                    moveToPreviousQuestion(currentCard);
+                });
+            }
+        }
+
+        // 다음 질문으로 이동
+        function moveToNextQuestion(currentCard) {
+            if (currentQuestion >= totalQuestions) {
+                // 마지막 질문이면 profile.html로 이동
+                window.location.href = 'profile.html';
+                return;
+            }
+
+            const nextCard = document.querySelector(`[data-question="${currentQuestion + 1}"]`);
+
+            if (!nextCard) return;
+
+            // 현재 카드 숨김
+            currentCard.classList.remove('active');
+
+            // 다음 카드 표시
+            setTimeout(() => {
+                nextCard.classList.add('active');
+            }, 150);
+
+            currentQuestion++;
+        }
+
+        // 이전 질문으로 이동
+        function moveToPreviousQuestion(currentCard) {
+            if (currentQuestion <= 1) {
+                return;
+            }
+
+            const prevCard = document.querySelector(`[data-question="${currentQuestion - 1}"]`);
+
+            if (!prevCard) return;
+
+            // 현재 카드 숨김
+            currentCard.classList.remove('active');
+
+            // 이전 카드 표시
+            setTimeout(() => {
+                prevCard.classList.add('active');
+            }, 150);
+
+            currentQuestion--;
+        }
+
+        // 페이지 로드 시 초기화
+        window.addEventListener('load', () => {
+            initializeCards();
+            setupOptionListeners();
+            setupButtonListeners();
+        });
+    </script>
+</body>
+</html>

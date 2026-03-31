@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunFan - アカウント登録</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common-styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Sans W3', 'Roboto', sans-serif;
+            background: #ffffff;
+            color: #1a68fe;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 390px;
+        }
+
+        .form-wrapper {
+            background: #ffffff;
+        }
+
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 24px;
+            width: 92px;
+            height: 26px;
+            z-index: 1000;
+        }
+
+        .form-title {
+            text-align: center;
+            color: #1a68fe;
+            margin-bottom: 38px;
+        }
+
+        .form-title.hero {
+            font-size: 44px;
+            font-weight: 400;
+            font-family: 'Rampart One', sans-serif;
+            line-height: 64px;
+            letter-spacing: -0.06em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-divider {
+            height: 1px;
+            background-color: #1a68fe;
+            margin: 19px 0;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Hiragino Sans', 'Hiragino Sans W6', 'Roboto', sans-serif;
+            color: #1a68fe;
+            margin-bottom: 8px;
+            gap: 6px;
+            line-height: 18px;
+        }
+
+        .lock-icon {
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a68fe;
+            font-size: 14px;
+        }
+
+        .invitation-code-group {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .invitation-input {
+            width: 100%;
+            height: 48px;
+            border: 1px solid #1a68fe;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Hiragino Sans', 'Hiragino Sans W6', 'Roboto', sans-serif;
+            color: #1a68fe;
+            background: #ffffff;
+            cursor: text;
+            line-height: 26px;
+        }
+
+        .invitation-input:hover {
+            border: 2px solid #1a68fe;
+            padding: 1px;
+        }
+
+        .invitation-input:focus {
+            outline: none;
+            border: 2px solid #1a68fe;
+            padding: 1px;
+            background: #ffffff;
+            color: #1a68fe;
+            box-shadow: 3px 3px 0px 0px rgba(26, 104, 254, 1);
+        }
+
+        .form-hint {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 20px;
+            font-size: 12px;
+            font-weight: 300;
+            font-family: 'Hiragino Sans', 'Hiragino Sans W3', 'Roboto', sans-serif;
+            color: #1a68fe;
+            line-height: 18px;
+        }
+
+        .validation-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #22c55e;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-left: 8px;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            line-height: 2;
+            display: none;
+        }
+
+        .validation-icon.show {
+            display: flex;
+        }
+
+        .text-input {
+            width: 100%;
+            height: 42px;
+            padding: 12px 14px;
+            border: 1px solid #1a68fe;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Hiragino Sans', 'Hiragino Sans W6', 'Roboto', sans-serif;
+            color: #1a68fe;
+            background: #ffffff;
+            line-height: 22px;
+        }
+
+        .text-input::placeholder {
+            color: #1a68fe;
+            font-weight: 300;
+            opacity: 0.6;
+        }
+
+        .text-input:hover {
+            border: 2px solid #1a68fe;
+            padding: 11px 13px;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border: 2px solid #1a68fe;
+            padding: 11px 13px;
+            background: #ffffff;
+            color: #1a68fe;
+            font-weight: 600;
+            box-shadow: 3px 3px 0px 0px rgba(26, 104, 254, 1);
+        }
+
+        .text-input:-webkit-autofill,
+        .text-input:-webkit-autofill:hover,
+        .text-input:-webkit-autofill:focus {
+            -webkit-text-fill-color: #1a68fe !important;
+            -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 46px;
+            margin-bottom: 46px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #1a68fe;
+            font-size: 12px;
+            font-weight: 300;
+            font-family: 'Hiragino Sans', 'Hiragino Sans W3', 'Roboto', sans-serif;
+            margin-bottom: 46px;
+            line-height: 18px;
+        }
+
+        @media (max-width: 480px) {
+            .form-title {
+                font-size: 28px;
+                margin-bottom: 40px;
+            }
+
+            .invitation-code-group {
+                gap: 8px;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="logo_funfan.svg" alt="FunFan Logo" class="logo">
+    <div class="container">
+        <form class="form-wrapper" id="registrationForm">
+            <h1 class="form-title hero">アカウント登録</h1>
+
+            <!-- 招待コード -->
+            <div class="form-group">
+                <label class="form-label caption-w6">
+                    招待コード
+                </label>
+                <div class="invitation-code-group">
+                    <input type="text" class="invitation-input body-w6" maxlength="1" required>
+                    <input type="text" class="invitation-input body-w6" maxlength="1" required>
+                    <input type="text" class="invitation-input body-w6" maxlength="1" required>
+                    <input type="text" class="invitation-input body-w6" maxlength="1" required>
+                    <input type="text" class="invitation-input body-w6" maxlength="1" required>
+                    <input type="text" class="invitation-input body-w6" maxlength="1" required>
+                    <input type="text" class="invitation-input body-w6" maxlength="1" required>
+                    <input type="text" class="invitation-input body-w6" maxlength="1" required>
+                    <input type="text" class="invitation-input body-w6" maxlength="1" required>
+                </div>
+                <div class="form-hint caption">
+                    <span>招待コード（英大文字+数字8桁）のいずれかお合わせ</span>
+                    <span class="validation-icon">✓</span>
+                </div>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <!-- メールアドレス -->
+            <div class="form-group">
+                <label class="form-label caption-w6">
+                    メールアドレス
+                </label>
+                <input type="email" class="text-input sub-text-w6" placeholder="your@email.com" required>
+            </div>
+
+            <!-- パスワード -->
+            <div class="form-group">
+                <label class="form-label caption-w6">
+                    パスワード
+                </label>
+                <input type="password" class="text-input sub-text-w6" placeholder="パスワード (8～12、英字+数字)" required>
+            </div>
+
+            <!-- パスワード確認 -->
+            <div class="form-group">
+                <label class="form-label caption-w6">
+                    パスワード確認
+                </label>
+                <input type="password" class="text-input sub-text-w6" placeholder="もう一度パスワードを入力してください。" required>
+            </div>
+
+            <!-- ボタン -->
+            <div class="button-group">
+                <button type="submit" class="btn button-cta-md-primary sub-text-w6">登録する</button>
+                <button type="button" class="btn button-cta-md-secondary sub-text-w6">ログイン</button>
+            </div>
+
+            <div class="footer caption">NHN comico Corp.</div>
+        </form>
+    </div>
+
+    <script>
+        // ページ加載時に最初の招待コード入力にフォーカス
+        window.addEventListener('load', () => {
+            // すべての入力フィールドを初期化
+            document.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            });
+
+            const firstInvitationInput = document.querySelector('.invitation-input');
+            if (firstInvitationInput) {
+                firstInvitationInput.focus();
+            }
+        });
+
+        // 招待コード入力の自動フォーカス
+        const invitationInputs = document.querySelectorAll('.invitation-input');
+
+        // 入力コード検証関数
+        function validateInvitationCode() {
+            const invitationCode = Array.from(invitationInputs)
+                .map(input => input.value)
+                .join('');
+            const validationIcon = document.querySelector('.validation-icon');
+
+            if (invitationCode.length === 9 && /^[A-Z]\d{8}$/.test(invitationCode)) {
+                validationIcon.classList.add('show');
+            } else {
+                validationIcon.classList.remove('show');
+            }
+        }
+
+        // 最初の入力にペースト機能を追加
+        invitationInputs[0].addEventListener('paste', (e) => {
+            e.preventDefault();
+            const pastedText = (e.clipboardData || window.clipboardData).getData('text').trim().toUpperCase();
+
+            // 英文1個 + 数字8個形式を確認
+            if (/^[A-Z]\d{8}$/.test(pastedText)) {
+                invitationInputs.forEach((input, index) => {
+                    if (index === 0) {
+                        input.value = pastedText[0]; // 英文
+                    } else {
+                        input.value = pastedText[index]; // 数字
+                    }
+                });
+                // 最後の入力にフォーカス
+                invitationInputs[invitationInputs.length - 1].focus();
+                validateInvitationCode();
+            }
+        });
+
+        invitationInputs.forEach((input, index) => {
+            // IME 입력 완료 후 처리
+            input.addEventListener('compositionend', (e) => {
+                e.target.dispatchEvent(new Event('input', { bubbles: true }));
+            });
+
+            input.addEventListener('input', (e) => {
+                let value = e.target.value.toUpperCase();
+
+                // 最初の入力は英文字のみ、他は数字のみ
+                if (index === 0) {
+                    value = value.replace(/[^A-Z]/g, '');
+                } else {
+                    value = value.replace(/[^0-9]/g, '');
+                }
+
+                e.target.value = value;
+
+                if (value && index < invitationInputs.length - 1) {
+                    invitationInputs[index + 1].focus();
+                }
+
+                validateInvitationCode();
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    invitationInputs[index - 1].focus();
+                    invitationInputs[index - 1].value = '';
+                    validateInvitationCode();
+                }
+            });
+        });
+
+        // フォーム送信
+        document.getElementById('registrationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const invitationCode = Array.from(invitationInputs)
+                .map(input => input.value)
+                .join('');
+
+            const textInputs = document.querySelectorAll('.text-input');
+            const emailInput = textInputs[0].value.trim();
+            const passwordInput = textInputs[1].value.trim();
+            const passwordConfirmInput = textInputs[2].value.trim();
+
+            // 入力値の検証
+            if (invitationCode.length !== 9) {
+                alert('招待コードを正しく入力してください');
+                return;
+            }
+
+            if (!emailInput) {
+                alert('メールアドレスを入力してください');
+                return;
+            }
+
+            if (!passwordInput) {
+                alert('パスワードを入力してください');
+                return;
+            }
+
+            if (!passwordConfirmInput) {
+                alert('パスワード確認を入力してください');
+                return;
+            }
+
+            if (passwordInput !== passwordConfirmInput) {
+                alert('パスワードが一致しません');
+                return;
+            }
+
+            // すべての検証に合格したらプロフィールページへ移動
+            window.location.href = 'profile.html';
+        });
+
+        // ログインボタン
+        document.querySelector('.btn-login').addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

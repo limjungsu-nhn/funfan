@@ -1,0 +1,265 @@
+/* Typography Styles - W3 */
+.caption {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.assist-text {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.sub-text {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.body-small {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.body {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+.body-large {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.h3 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 32px;
+}
+
+.h2 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 38px;
+}
+
+.h1 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 46px;
+}
+
+.display3 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 58px;
+}
+
+.display2 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 72px;
+}
+
+.display1 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
+    font-size: 72px;
+    font-weight: 400;
+    line-height: 84px;
+}
+
+/* Typography Styles - W6 */
+.caption-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+}
+
+.assist-text-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.sub-text-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.body-small-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.body-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+}
+
+.body-large-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+}
+
+.h3-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 32px;
+}
+
+.h2-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 38px;
+}
+
+.h1-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 46px;
+}
+
+.display3-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 58px;
+}
+
+.display2-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 72px;
+}
+
+.display1-w6 {
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 84px;
+}
+
+/* Hero Text */
+.hero {
+    font-family: 'Rampart One', sans-serif;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 64px;
+}
+
+/* Button Styles - Profile Page (40px - Small) */
+.button-cta-sm {
+    background-color: #1a68fe;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 16px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 20px;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px rgba(25, 96, 245, 0.08);
+    transition: all 0.2s ease;
+}
+
+.button-cta-sm:hover {
+    background-color: #1558d8;
+    transform: translateY(-2px);
+}
+
+.button-cta-sm:active {
+    background-color: #1450c4;
+}
+
+/* Button Styles - Login/Signup Pages */
+.btn {
+    padding: 13px 24px;
+    border: 2px solid #1a68fe;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Hiragino Sans', 'Hiragino Sans W6', 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 22px;
+}
+
+/* Primary Button (Medium - Register/Login) */
+.button-cta-md-primary {
+    height: 42px;
+    background: #1a68fe;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 4px 4px 0px rgba(26, 104, 254, 0.08);
+}
+
+.button-cta-md-primary:hover {
+    background: #1558d8;
+    box-shadow: 0px 4px 4px 0px rgba(26, 104, 254, 0.12);
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+}
+
+.button-cta-md-primary:active {
+    background: #1450c4;
+}
+
+/* Secondary Button (Medium - Login/Register) */
+.button-cta-md-secondary {
+    height: 42px;
+    background: #ffffff;
+    color: #1a68fe;
+    border: none;
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+.button-cta-md-secondary:hover {
+    background: #f1f6ff;
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+}
+
+.button-cta-md-secondary:active {
+    background: #e8f0fe;
+}
