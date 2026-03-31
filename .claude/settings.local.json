@@ -14,7 +14,15 @@
       "Bash(grep -l \"fonts.googleapis.com\" /Users/NHN/_FunFan_v3/*.html)",
       "Bash(ls -lh /Users/NHN/Downloads/partner*.svg)",
       "Bash(ls -lh /Users/NHN/_FunFan_v3/partner*.svg)",
-      "Bash(git commit -m \"feat: Add partner page, apply font system, and update styling:*)"
+      "Bash(git commit -m \"feat: Add partner page, apply font system, and update styling:*)",
+      "Bash(npm install:*)",
+      "Bash(git commit -m \"chore: Add vercel.json for static site deployment:*)",
+      "Bash(git push:*)",
+      "Bash(git remote:*)",
+      "Bash(npx vercel:*)",
+      "Bash(ls -lh *.html)",
+      "Bash(git commit -m \"feat: Add index.html as entry point \\(signup page\\):*)",
+      "Bash(git commit:*)"
     ]
   }
 }
