@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunFan - パートナー選択</title>
+    <link rel="stylesheet" href="common-styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Sans W3', 'Roboto', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 24px;
+            width: 92px;
+            height: 26px;
+        }
+
+        .main-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 960px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: #1a68fe;
+            white-space: nowrap;
+        }
+
+        .header p {
+            color: #1a68fe;
+        }
+
+        .partners-container {
+            display: flex;
+            gap: 24px;
+            width: 100%;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .partner-card {
+            width: 320px;
+            height: 440px;
+            border: 1px solid #1a68fe;
+            border-radius: 24px;
+            padding: 24px 22px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 8px 16px 0px rgba(25, 96, 245, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .partner-card:hover {
+            box-shadow: 0px 12px 24px 0px rgba(25, 96, 245, 0.12);
+        }
+
+        .partner-header {
+            display: flex;
+            gap: 4px;
+            align-items: flex-end;
+            width: 100%;
+            white-space: nowrap;
+            color: #1a68fe;
+        }
+
+        .partner-name {
+            color: #1a68fe;
+        }
+
+        .partner-type {
+            color: #1a68fe;
+        }
+
+        .partner-image {
+            width: 160px;
+            height: 156px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .partner-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-end;
+            width: 100%;
+        }
+
+        .partner-description {
+            color: #1a68fe;
+            text-align: left;
+            word-break: break-word;
+        }
+
+        .partner-select-btn {
+            width: auto;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .partner-select-btn:hover {
+            background-color: #1558d8;
+            transform: translateY(-2px);
+        }
+
+        .partner-select-btn:active {
+            background-color: #1558d8;
+            transform: translateY(0);
+        }
+
+        .info-text {
+            text-align: center;
+            font-family: "Hiragino Sans", sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 20px;
+            color: #1a68fe;
+            margin-top: 20px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-family: "Hiragino Sans", sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 18px;
+            color: #1a68fe;
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                position: relative;
+                width: 100%;
+                max-height: none;
+                top: auto;
+                left: auto;
+                transform: none;
+            }
+
+            .partners-container {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .partner-card {
+                width: 100%;
+            }
+
+            .header h1 {
+                font-size: 32px;
+                line-height: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="logo_funfan.svg" alt="FunFan Logo" class="logo">
+
+    <div class="main-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <h1 class="form-title hero">あなたの創作パートナーを選んでください</h1>
+                <p class="assist-text">パートナーはあとから変更できます</p>
+            </div>
+
+            <div class="partners-container">
+                <!-- パートナー 1: ハナ (ヒツジ) -->
+                <div class="partner-card" data-partner="hana">
+                    <div class="partner-header">
+                        <div class="partner-name hero-sm">ハナ</div>
+                        <div class="partner-type caption">ヒツジ</div>
+                    </div>
+
+                    <div class="partner-image">
+                        <img src="partner1.svg" alt="ハナ (ヒツジ)">
+                    </div>
+
+                    <div class="partner-footer">
+                        <p class="partner-description assist-text">やさしく信頼できる存在自分で答えを見つけたい、質問を通じて気づきを得たい方へ</p>
+                        <button class="partner-select-btn button-cta-sm">選ぶ</button>
+                    </div>
+                </div>
+
+                <!-- パートナー 2: トントン (パンダ) -->
+                <div class="partner-card" data-partner="tonkton">
+                    <div class="partner-header">
+                        <div class="partner-name hero-sm">トントン</div>
+                        <div class="partner-type caption">パンダ</div>
+                    </div>
+
+                    <div class="partner-image">
+                        <img src="partner2.svg" alt="トントン (パンダ)">
+                    </div>
+
+                    <div class="partner-footer">
+                        <p class="partner-description assist-text">静かにそばにいてくれる存在共感しながら方向性を一緒に考えてくれる存在が欲しい方へ</p>
+                        <button class="partner-select-btn button-cta-sm">選ぶ</button>
+                    </div>
+                </div>
+
+                <!-- パートナー 3: ハナ (ヒツジ) -->
+                <div class="partner-card" data-partner="hana-2">
+                    <div class="partner-header">
+                        <div class="partner-name hero-sm">ハナ</div>
+                        <div class="partner-type caption">ヒツジ</div>
+                    </div>
+
+                    <div class="partner-image">
+                    </div>
+
+                    <div class="partner-footer">
+                        <p class="partner-description assist-text">見えていなかったものを見つけ、具体的なアドバイスと効率的な整理を求める方へ</p>
+                        <button class="partner-select-btn button-cta-sm">選ぶ</button>
+                    </div>
+                </div>
+            </div>
+
+            <p class="info-text">このパートナーはAIです。創作をそばで支えるために設計されています。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        NHN comico Corp.
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectButtons = document.querySelectorAll('.partner-select-btn');
+
+            selectButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.partner-card');
+                    const partnerId = card.getAttribute('data-partner');
+
+                    // パートナーを選択したことを保存
+                    localStorage.setItem('selectedPartner', partnerId);
+
+                    // 選択完了ページへ遷移
+                    console.log('パートナーを選択しました:', partnerId);
+                    alert(partnerId + 'を選びました！');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

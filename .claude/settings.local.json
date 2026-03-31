@@ -9,7 +9,12 @@
       "Bash(git init:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"FunFan 설문지 기능 구현 완료:*)",
-      "Bash(git rebase:*)"
+      "Bash(git rebase:*)",
+      "WebFetch(domain:www.figma.com)",
+      "Bash(grep -l \"fonts.googleapis.com\" /Users/NHN/_FunFan_v3/*.html)",
+      "Bash(ls -lh /Users/NHN/Downloads/partner*.svg)",
+      "Bash(ls -lh /Users/NHN/_FunFan_v3/partner*.svg)",
+      "Bash(git commit -m \"feat: Add partner page, apply font system, and update styling:*)"
     ]
   }
 }

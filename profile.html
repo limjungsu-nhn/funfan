@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FunFan - プロフィール</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Rampart+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="common-styles.css">
     <style>
         * {
@@ -88,7 +87,8 @@
             position: relative;
             width: 100%;
             max-width: 600px;
-            min-height: 360px;
+            height: 380px;
+            margin-bottom: 46px;
         }
 
         .form-card {
@@ -99,17 +99,27 @@
             width: 100%;
             height: 380px;
             box-shadow: 0px 8px 16px 0px rgba(25, 96, 245, 0.08);
-            display: none;
+            display: flex;
             flex-direction: column;
             gap: 40px;
             align-items: center;
             justify-content: center;
             overflow-y: auto;
-            margin-bottom: 46px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            pointer-events: none;
+            visibility: hidden;
         }
 
         .form-card.active {
-            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            visibility: visible;
         }
 
         .form-group {
@@ -363,7 +373,31 @@
                 } else {
                     card.classList.remove('active');
                 }
+
+                // 모든 버튼을 disabled 상태로 설정 (button-prev 제외)
+                const button = card.querySelector('.button-cta-sm:not(.button-prev)');
+                if (button) {
+                    button.disabled = true;
+                    applyDisabledStyle(button);
+                }
             });
+        }
+
+        // Disabled 스타일 적용
+        function applyDisabledStyle(button) {
+            button.style.color = 'rgba(255, 255, 255, 0.4)';
+            button.style.cursor = 'pointer';
+            button.style.pointerEvents = 'auto';
+            button.style.transform = 'none';
+            button.style.backgroundColor = '#1a68fe';
+        }
+
+        // Enabled 스타일 적용
+        function applyEnabledStyle(button) {
+            button.style.color = '#ffffff';
+            button.style.cursor = 'pointer';
+            button.style.transform = '';
+            button.style.backgroundColor = '';
         }
 
         // 옵션 선택 기능
@@ -374,11 +408,30 @@
                 option.addEventListener('click', function(e) {
                     const currentCard = document.querySelector('.form-card.active');
                     const currentOptions = currentCard.querySelectorAll('.option');
+                    const currentButton = currentCard.querySelector('.button-cta-sm:not(.button-prev)');
+                    const isCurrentlySelected = this.classList.contains('selected');
 
-                    // 기존 선택된 항목 제거
-                    currentOptions.forEach(opt => opt.classList.remove('selected'));
-                    // 새로운 항목 선택
-                    this.classList.add('selected');
+                    if (isCurrentlySelected) {
+                        // 현재 선택된 항목을 다시 클릭한 경우 → 취소
+                        this.classList.remove('selected');
+
+                        // 버튼을 비활성화
+                        if (currentButton) {
+                            currentButton.disabled = true;
+                            applyDisabledStyle(currentButton);
+                        }
+                    } else {
+                        // 다른 항목을 선택한 경우
+                        currentOptions.forEach(opt => opt.classList.remove('selected'));
+                        // 새로운 항목 선택
+                        this.classList.add('selected');
+
+                        // 버튼을 활성화
+                        if (currentButton) {
+                            currentButton.disabled = false;
+                            applyEnabledStyle(currentButton);
+                        }
+                    }
                 });
             });
         }
@@ -416,8 +469,8 @@
         // 다음 질문으로 이동
         function moveToNextQuestion(currentCard) {
             if (currentQuestion >= totalQuestions) {
-                // 마지막 질문이면 profile.html로 이동
-                window.location.href = 'profile.html';
+                // 마지막 질문이면 partner.html로 이동
+                window.location.href = 'partner.html';
                 return;
             }
 
@@ -428,10 +481,24 @@
             // 현재 카드 숨김
             currentCard.classList.remove('active');
 
-            // 다음 카드 표시
-            setTimeout(() => {
-                nextCard.classList.add('active');
-            }, 150);
+            // 다음 카드 표시 (CSS 트랜지션으로 처리)
+            nextCard.classList.add('active');
+
+            // 다음 카드의 선택 상태 확인하고 버튼 활성화/비활성화
+            const nextButton = nextCard.querySelector('.button-cta-sm:not(.button-prev)');
+            const selectedOption = nextCard.querySelector('.option.selected');
+
+            if (nextButton) {
+                if (selectedOption) {
+                    // 선택된 옵션이 있으면 버튼 활성화
+                    nextButton.disabled = false;
+                    applyEnabledStyle(nextButton);
+                } else {
+                    // 선택된 옵션이 없으면 버튼 비활성화
+                    nextButton.disabled = true;
+                    applyDisabledStyle(nextButton);
+                }
+            }
 
             currentQuestion++;
         }
@@ -449,10 +516,24 @@
             // 현재 카드 숨김
             currentCard.classList.remove('active');
 
-            // 이전 카드 표시
-            setTimeout(() => {
-                prevCard.classList.add('active');
-            }, 150);
+            // 이전 카드 표시 (CSS 트랜지션으로 처리)
+            prevCard.classList.add('active');
+
+            // 이전 카드의 선택 상태 확인하고 버튼 활성화/비활성화
+            const prevButton = prevCard.querySelector('.button-cta-sm:not(.button-prev)');
+            const selectedOption = prevCard.querySelector('.option.selected');
+
+            if (prevButton) {
+                if (selectedOption) {
+                    // 선택된 옵션이 있으면 버튼 활성화
+                    prevButton.disabled = false;
+                    applyEnabledStyle(prevButton);
+                } else {
+                    // 선택된 옵션이 없으면 버튼 비활성화
+                    prevButton.disabled = true;
+                    applyDisabledStyle(prevButton);
+                }
+            }
 
             currentQuestion--;
         }

@@ -1,85 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Rampart+One&display=swap');
+
 /* Typography Styles - W3 */
 .caption {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 18px;
 }
 
 .assist-text {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 20px;
 }
 
 .sub-text {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 22px;
 }
 
 .body-small {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 24px;
 }
 
 .body {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 26px;
 }
 
 .body-large {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 28px;
 }
 
 .h3 {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 22px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 32px;
 }
 
 .h2 {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 28px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 38px;
 }
 
 .h1 {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 36px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 46px;
 }
 
 .display3 {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 48px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 58px;
 }
 
 .display2 {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 60px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 72px;
 }
 
 .display1 {
     font-family: 'Hiragino Sans', 'Hiragino Sans W3', sans-serif;
     font-size: 72px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 84px;
 }
 
@@ -172,8 +174,17 @@
 .hero {
     font-family: 'Rampart One', sans-serif;
     font-size: 44px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 64px;
+    letter-spacing: -0.06em;
+}
+
+.hero-sm {
+    font-family: 'Rampart One', sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 38px;
+    letter-spacing: -0.06em;
 }
 
 /* Button Styles - Profile Page (40px - Small) */
@@ -203,6 +214,17 @@
 
 .button-cta-sm:active {
     background-color: #1450c4;
+}
+
+.button-cta-sm:disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed;
+    background-color: #1a68fe !important;
+}
+
+.button-cta-sm:disabled:hover {
+    background-color: #1a68fe !important;
+    transform: none !important;
 }
 
 /* Button Styles - Login/Signup Pages */
